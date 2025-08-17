@@ -14,7 +14,7 @@ export default function VehicleInfo() {
   }, [year, age, setValue]);
 
   return (
-  <div className="p-4 bg-white dark:bg-gray-800 rounded shadow space-y-3">
+  <div className="p-4 bg-white rounded shadow space-y-3">
       <h2 className="font-semibold">Vehicle</h2>
       <div>
         <label className="text-sm font-medium">Year</label>
@@ -40,5 +40,5 @@ export default function VehicleInfo() {
 function IscBand({ age }: { age?: number }) {
   if (age === undefined) return null;
   const rate = age <= 5 ? 52 : 73;
-  return <div className="text-xs text-gray-600 dark:text-gray-400">ISC band: {rate}% (age {age})</div>;
+  return <div className="text-xs text-gray-600">ISC band: {rate}% (age {age})</div>;
 }

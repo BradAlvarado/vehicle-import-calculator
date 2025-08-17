@@ -5,20 +5,20 @@ import { v4 as uuid } from 'uuid';
 
 const defaultScenario = (): Scenario => ({
   id: uuid(),
-  vehicle: { age: 6, make: 'Toyota', model: 'Corolla' },
-  exchangeRate: 530,
-  purchase: { amount: 10000, currency: 'USD' },
+  vehicle: { age: 15, make: 'Honda', model: 'Civic' },
+  exchangeRate: 505,
+  purchase: { amount: 3000, currency: 'USD' },
   shipping: { amount: 1200, currency: 'USD' },
-  customsBaseCRC: 4000000,
+  customsBaseCRC: 5000000,
   fees: [
     { label: 'DEKRA', amountCRC: 7000, enabled: true },
     { label: 'Marchamo', amountCRC: 120000, enabled: true },
     { label: 'Placas', amountCRC: 25000, enabled: true },
     { label: 'Traspaso', amountCRC: 100000, enabled: true }
   ],
-  marketPrice: { mode: 'single', single: { amount: 16500000, currency: 'CRC' } },
-  // Updated tax defaults per new spec: ISC 52% (<=5 yrs) / 73% (>=6 yrs), DAI 0%, Law 6946 1%, IVA 13%
-  settings: { isc30: 0.52, isc48: 0.73, iva: 0.13, dai: 0, arancel: 0.01, thresholdPct: 15, tolerancePct: 2, useInvoiceAsBase: false },
+  marketPrice: { mode: 'single', single: { amount: 5000000, currency: 'CRC' } },
+  // Updated tax defaults per latest update: ISC 0%, DAI 40%, Law 6946 1%, IVA 13% over base only
+  settings: { isc30: 0, isc48: 0, iva: 0.13, dai: 0.40, arancel: 0.01, thresholdPct: 15, tolerancePct: 2, useInvoiceAsBase: false },
 });
 
 interface ScenarioState {

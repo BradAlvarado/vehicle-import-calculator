@@ -6,7 +6,7 @@ export default function ResultsPanel() {
   const r = scenario.results;
   if (!r) return null;
   return (
-    <div className="p-4 bg-white rounded shadow text-sm space-y-2">
+  <div className="p-4 bg-white rounded shadow text-sm space-y-2">
       <h2 className="font-semibold">Results</h2>
       <Row label="Total Investment" value={r.totalInvestment} bold />
       <Row label="Profit" value={r.profit} bold color={r.profit < 0 ? 'text-red-600' : ''} />

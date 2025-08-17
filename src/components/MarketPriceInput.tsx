@@ -6,7 +6,7 @@ export default function MarketPriceInput() {
   const mode = watch('marketPrice.mode');
 
   return (
-    <section className="p-4 bg-white rounded shadow space-y-3">
+  <section className="p-4 bg-white rounded shadow space-y-3">
       <h2 className="font-semibold">Market Price</h2>
       <div className="flex gap-4 text-sm">
         <label className="flex items-center gap-1"><input type="radio" value="single" {...register('marketPrice.mode')} /> Single</label>
@@ -25,17 +25,18 @@ export default function MarketPriceInput() {
   );
 }
 
-function MoneyField({ baseName, label }: { baseName: string; label?: string }) {
+type MPPath = 'marketPrice.single' | 'marketPrice.min' | 'marketPrice.max';
+function MoneyField({ baseName, label }: { baseName: MPPath; label?: string }) {
   const { register } = useFormContext<ScenarioFormValues>();
   return (
     <div className="space-y-1">
       <label className="text-xs font-medium flex items-center gap-2">{label || 'Value'}
-        <select className="border rounded p-1 text-xs" {...register(`${baseName}.currency` as const)}>
+        <select className="border rounded p-1 text-xs" {...register(`${baseName}.currency` as MPPath)}>
           <option value="CRC">CRC</option>
           <option value="USD">USD</option>
         </select>
       </label>
-      <input type="number" className="input w-full" {...register(`${baseName}.amount` as const, { valueAsNumber: true })} />
+      <input type="number" className="input w-full" {...register(`${baseName}.amount` as MPPath, { valueAsNumber: true })} />
     </div>
   );
 }

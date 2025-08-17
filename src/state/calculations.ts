@@ -4,27 +4,18 @@ export function moneyToCRC(m: Money, rate: number): number {
   return m.currency === 'CRC' ? m.amount : m.amount * rate;
 }
 
-// Updated bands: age <=5 -> lower band (now 52%), age >=6 -> higher band (now 73%)
-export function determineIscRate(age?: number, settings?: { isc30: number; isc48: number }): number {
-  if (age === undefined || !settings) return 0;
-  return age <= 5 ? settings.isc30 : settings.isc48;
-}
+// ISC now 0% regardless of age per latest update
+export function determineIscRate(_age?: number, _settings?: { isc30: number; isc48: number }): number { return 0; }
 
 export function calculateScenario(base: Scenario): ScenarioResults {
   const { purchase, shipping, exchangeRate, customsBaseCRC, fees, marketPrice, settings, vehicle } = base;
   const purchase_crc = moneyToCRC(purchase, exchangeRate);
   const shipping_crc = moneyToCRC(shipping, exchangeRate);
   const base_crc = customsBaseCRC; // future: conditional useInvoiceAsBase
-  const isc_rate = determineIscRate(vehicle.age, settings);
-  const dai_rate = settings.dai; // now always 0%
-  const ley6946_rate = settings.arancel; // repurposed field: always 1% of Hacienda value
-  const iva_rate = settings.iva; // 13%
-  const isc = base_crc * isc_rate;
-  const dai = base_crc * dai_rate; // 0%
-  const arancel = base_crc * ley6946_rate; // Law 6946 1%
-  // IVA applied to (Hacienda Value + ISC + Law 6946 + DAI (0) )
-  const ivaBase = base_crc + isc + dai + arancel;
-  const iva = ivaBase * iva_rate;
+  const isc = 0; // ISC eliminated
+  const dai = base_crc * settings.dai; // DAI now 40%
+  const arancel = base_crc * settings.arancel; // Law 6946 1%
+  const iva = base_crc * settings.iva; // IVA 13% over base only (non-cumulative)
   const taxesTotal = isc + dai + arancel + iva;
   const fees_crc = fees.filter(f => f.enabled).reduce((a, f) => a + f.amountCRC, 0);
   const totalInvestment = purchase_crc + shipping_crc + taxesTotal + fees_crc;

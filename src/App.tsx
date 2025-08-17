@@ -38,7 +38,7 @@ export default function App() {
   }, [methods, updateScenario]);
 
   return (
-  <div className="max-w-7xl mx-auto p-4 space-y-6 text-gray-900 dark:text-gray-100">
+  <div className="max-w-7xl mx-auto p-4 space-y-6">
       <header className="mb-4">
         <h1 className="text-2xl font-bold">Costa Rica Vehicle Import Profit Calculator</h1>
         <p className="text-sm text-gray-600">All amounts internally in CRC. Configure exchange rate & toggle fees.</p>
@@ -48,7 +48,7 @@ export default function App() {
           <section className="space-y-4 md:col-span-2">
             <div className="grid gap-4 md:grid-cols-2">
               <VehicleInfo />
-              <div className="space-y-3 p-4 bg-white dark:bg-gray-800 rounded shadow">
+              <div className="space-y-3 p-4 bg-white rounded shadow">
                 <h2 className="font-semibold">Monetary Inputs</h2>
                 <CurrencyInput name="purchase" label="Purchase Price" />
                 <CurrencyInput name="shipping" label="Shipping + Insurance" />

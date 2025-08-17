@@ -12,34 +12,30 @@ function baseScenario(age: number): Scenario {
     customsBaseCRC: 4000000,
     fees: [ { label: 'Test', amountCRC: 100000, enabled: true } ],
     marketPrice: { mode: 'single', single: { amount: 15000000, currency: 'CRC' } },
-  settings: { isc30: 0.52, isc48: 0.73, iva: 0.13, dai: 0, arancel: 0.01, thresholdPct: 15, tolerancePct: 2, useInvoiceAsBase: false }
+  settings: { isc30: 0, isc48: 0, iva: 0.13, dai: 0.40, arancel: 0.01, thresholdPct: 15, tolerancePct: 2, useInvoiceAsBase: false }
   };
 }
 
 describe('calculations', () => {
-  it('applies ISC 52% when age <= 5', () => {
-    const s = baseScenario(5);
-    const r = calculateScenario(s);
-    expect(r.taxes.isc).toBeCloseTo(4000000 * 0.52, -1);
-  });
-  it('applies ISC 73% when age >= 6', () => {
-    const s = baseScenario(6);
-    const r = calculateScenario(s);
-    expect(r.taxes.isc).toBeCloseTo(4000000 * 0.73, -1);
-  });
-  it('DAI always 0 and Law 6946 1% of base', () => {
+  it('ISC now zero', () => {
     const s = baseScenario(4);
     const r = calculateScenario(s);
-    expect(r.taxes.dai).toBe(0);
+    expect(r.taxes.isc).toBe(0);
+  });
+  it('DAI 40% applied to base', () => {
+    const s = baseScenario(3);
+    const r = calculateScenario(s);
+    expect(r.taxes.dai).toBeCloseTo(4000000 * 0.40, -1);
+  });
+  it('Law 6946 1% still applied', () => {
+    const s = baseScenario(2);
+    const r = calculateScenario(s);
     expect(r.taxes.arancel).toBeCloseTo(4000000 * 0.01, -1);
   });
-  it('IVA applied to (base + ISC + Law6946)', () => {
-    const s = baseScenario(4);
+  it('IVA 13% only on base now', () => {
+    const s = baseScenario(5);
     const r = calculateScenario(s);
-    const expectedIsc = 4000000 * 0.52;
-    const expectedLey = 4000000 * 0.01;
-    const ivaBase = 4000000 + expectedIsc + expectedLey + 0; // DAI 0
-    expect(r.taxes.iva).toBeCloseTo(ivaBase * 0.13, -1);
+    expect(r.taxes.iva).toBeCloseTo(4000000 * 0.13, -1);
   });
   it('handles range market prices', () => {
     const s = baseScenario(5);

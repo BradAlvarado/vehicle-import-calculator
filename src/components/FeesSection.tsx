@@ -15,7 +15,7 @@ export default function FeesSection() {
   };
 
   return (
-    <section className="p-4 bg-white rounded shadow space-y-3">
+  <section className="p-4 bg-white rounded shadow space-y-3">
       <h2 className="font-semibold">Circulation / Fees</h2>
       <div className="space-y-2">
         {fees.map((f, i) => (

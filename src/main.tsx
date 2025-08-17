@@ -29,11 +29,6 @@ class RootErrorBoundary extends React.Component<{ children: React.ReactNode }, {
 console.log('[CR Import Calculator] Bootstrapping app...');
 
 const rootEl = document.getElementById('root');
-// Initialize dark mode from localStorage
-try {
-	const pref = localStorage.getItem('cr_dark_mode');
-	if (pref === 'dark') document.documentElement.classList.add('dark');
-} catch {}
 if (!rootEl) {
 	console.error('Root element #root not found – index.html might be altered.');
 } else {

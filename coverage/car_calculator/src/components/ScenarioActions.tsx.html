@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/54</span>
+                <span class='fraction'>0/45</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/54</span>
+                <span class='fraction'>0/45</span>
             </div>
         
             
@@ -114,20 +114,8 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -169,15 +157,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -186,13 +166,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useScenarioStore } from '../state/store';</span></span></span>
-import { useState } from 'react';
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export default function ScenarioActions() {</span>
 <span class="cstat-no" title="statement not covered" >  const saveCurrent = useScenarioStore(s =&gt; s.saveCurrent);</span>
 <span class="cstat-no" title="statement not covered" >  const scenario = useScenarioStore(s =&gt; s.scenario);</span>
 <span class="cstat-no" title="statement not covered" >  const results = scenario.results;</span>
-<span class="cstat-no" title="statement not covered" >  const [dark, setDark] = useState(() =&gt; document.documentElement.classList.contains('dark'));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  const copySummary = () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    if (!results) return;</span>
@@ -230,19 +208,11 @@ import { useState } from 'react';
 <span class="cstat-no" title="statement not covered" >    URL.revokeObjectURL(url);</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const toggleDark = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const el = document.documentElement;</span>
-<span class="cstat-no" title="statement not covered" >    el.classList.toggle('dark');</span>
-<span class="cstat-no" title="statement not covered" >    const isDark = el.classList.contains('dark');</span>
-<span class="cstat-no" title="statement not covered" >    setDark(isDark);</span>
-<span class="cstat-no" title="statement not covered" >    try { localStorage.setItem('cr_dark_mode', isDark ? 'dark' : 'light'); } catch {}</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
 <span class="cstat-no" title="statement not covered" >    &lt;div className="flex gap-2 flex-wrap items-center"&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;button type="button" onClick={() =&gt; { saveCurrent(); exportTxt(); }} className="px-3 py-1 bg-green-600 text-white rounded text-xs"&gt;Save Scenario (.txt)&lt;/button&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;button type="button" onClick={copySummary} className="px-3 py-1 bg-gray-700 text-white rounded text-xs"&gt;Copy Summary&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;button type="button" onClick={toggleDark} className="px-3 py-1 rounded text-xs border border-gray-400 dark:border-gray-600 dark:text-white"&gt;{dark ? 'Light Mode' : 'Dark Mode'}&lt;/button&gt;</span>
 <span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
   );
 <span class="cstat-no" title="statement not covered" >}</span>
@@ -253,7 +223,7 @@ import { useState } from 'react';
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-16T23:59:24.879Z
+                at 2025-08-17T17:34:24.931Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

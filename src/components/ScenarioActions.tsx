@@ -1,11 +1,9 @@
 import { useScenarioStore } from '../state/store';
-import { useState } from 'react';
 
 export default function ScenarioActions() {
   const saveCurrent = useScenarioStore(s => s.saveCurrent);
   const scenario = useScenarioStore(s => s.scenario);
   const results = scenario.results;
-  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
 
   const copySummary = () => {
     if (!results) return;
@@ -43,19 +41,11 @@ export default function ScenarioActions() {
     URL.revokeObjectURL(url);
   };
 
-  const toggleDark = () => {
-    const el = document.documentElement;
-    el.classList.toggle('dark');
-    const isDark = el.classList.contains('dark');
-    setDark(isDark);
-    try { localStorage.setItem('cr_dark_mode', isDark ? 'dark' : 'light'); } catch {}
-  };
 
   return (
     <div className="flex gap-2 flex-wrap items-center">
       <button type="button" onClick={() => { saveCurrent(); exportTxt(); }} className="px-3 py-1 bg-green-600 text-white rounded text-xs">Save Scenario (.txt)</button>
       <button type="button" onClick={copySummary} className="px-3 py-1 bg-gray-700 text-white rounded text-xs">Copy Summary</button>
-      <button type="button" onClick={toggleDark} className="px-3 py-1 rounded text-xs border border-gray-400 dark:border-gray-600 dark:text-white">{dark ? 'Light Mode' : 'Dark Mode'}</button>
     </div>
   );
 }
